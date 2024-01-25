@@ -29,11 +29,11 @@ basicClassification.o: basicClassification.c NumClass.h
 
 loops: advancedClassificationLoop.o basicClassification.o
 	ar -rcs libclassloops.a advancedClassificationLoop.o basicClassification.o
-	ranlib libclassloops.a
+
 
 recursives: advancedClassificationRecursion.o basicClassification.o
 	ar -rcs libclassrec.a advancedClassificationRecursion.o basicClassification.o
-	ranlib libclassrec.a
+
 
 recursived: advancedClassificationRecursion.o basicClassification.o
 	$(CC) -fPIC -c advancedClassificationRecursion.c basicClassification.c 
