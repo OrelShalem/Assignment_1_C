@@ -9,8 +9,9 @@ int main() {
 	printf("The Armstrong numbers are: ");
 	for(int i = num1;i<=num2;i++ ){
 		if (isArmstrong(i) == 1)
-		{
-			printf("%d ", i);
+		{	
+			if(i != num1) printf(" ");
+			printf("%d", i);
 		}
 
 	}
@@ -19,7 +20,8 @@ int main() {
 	for(int i = num1;i<=num2;i++ ){
 		if (isPalindrome(i))
 		{
-			printf("%d ", i);
+			if(i != num1) printf(" ");
+			printf("%d", i);
 		}
 
 	}
@@ -28,7 +30,8 @@ int main() {
     for(int i = num1;i<=num2;i++ ){
 		if (isPrime(i))
 		{
-			printf("%d ", i);
+			if(i != num1) printf(" ");
+			printf("%d", i);
 		}
 		
 
@@ -38,7 +41,8 @@ int main() {
 	for(int i = num1;i<=num2;i++ ){
 		if (isStrong(i))
 		{
-			printf("%d ", i);
+			if(i != num1) printf(" ");
+			printf("%d", i);
 		}
 
 	}
