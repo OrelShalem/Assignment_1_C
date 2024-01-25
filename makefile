@@ -26,8 +26,9 @@ advancedClassificationRecursion.o: advancedClassificationRecursion.c NumClass.h
 basicClassification.o: basicClassification.c NumClass.h
 	$(CC) $(FLAGS) -c basicClassification.c -o basicClassification.o
 
+loops: libclassloops.a
 
-loops: advancedClassificationLoop.o basicClassification.o
+libclassloops.a: advancedClassificationLoop.o basicClassification.o
 	ar -rcs libclassloops.a advancedClassificationLoop.o basicClassification.o
 
 
