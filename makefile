@@ -2,7 +2,7 @@ CC = gcc
 FLAGS = -Wall -g
 OBJECTS_MAIN = main.o
 
-all: loops recursives recursived loopd mains maindloop maindrec 
+all: loops recursives recursived loopd mains maindloop maindrec
 
 mains: $(OBJECTS_MAIN) libclassrec.a
 	$(CC) $(FLAGS) -o mains $(OBJECTS_MAIN) libclassrec.a
@@ -26,19 +26,25 @@ advancedClassificationRecursion.o: advancedClassificationRecursion.c NumClass.h
 basicClassification.o: basicClassification.c NumClass.h
 	$(CC) $(FLAGS) -c basicClassification.c -o basicClassification.o
 
-loops: advancedClassificationLoop.o basicClassification.o
+loops: libclassloops.a
+
+libclassloops.a: advancedClassificationLoop.o basicClassification.o
 	ar -rcs libclassloops.a advancedClassificationLoop.o basicClassification.o
+	
+recursives: libclassrec.a
 
-
-recursives: advancedClassificationRecursion.o basicClassification.o
+libclassrec.a: advancedClassificationRecursion.o basicClassification.o
 	ar -rcs libclassrec.a advancedClassificationRecursion.o basicClassification.o
+	
+recursived: libclassrec.so 
 
-
-recursived: advancedClassificationRecursion.o basicClassification.o
+libclassrec.so: advancedClassificationRecursion.o basicClassification.o
 	$(CC) -fPIC -c advancedClassificationRecursion.c basicClassification.c 
 	$(CC) -shared -o libclassrec.so advancedClassificationRecursion.o basicClassification.o 
 
-loopd: advancedClassificationLoop.o basicClassification.o
+loopd: libclassloops.so
+
+libclassloops.so: advancedClassificationLoop.o basicClassification.o
 	$(CC) -fPIC -c advancedClassificationLoop.c basicClassification.c
 	$(CC) -shared -o libclassloops.so advancedClassificationLoop.o basicClassification.o 
 
