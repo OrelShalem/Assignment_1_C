@@ -10,7 +10,12 @@ int main() {
 	for(int i = num1;i<=num2;i++ ){
 		if (isArmstrong(i) == 1)
 		{	
-			if(i != num1) printf(" ");
+			if(i == num1){
+				printf(" ");
+			} 
+			else{
+				printf(" ");
+			}
 			printf("%d", i);
 		}
 
@@ -20,7 +25,12 @@ int main() {
 	for(int i = num1;i<=num2;i++ ){
 		if (isPalindrome(i))
 		{
-			if(i != num1) printf(" ");
+			if(i == num1){
+				printf(" ");
+			} 
+			else{
+				printf(" ");
+			}
 			printf("%d", i);
 		}
 
@@ -30,7 +40,12 @@ int main() {
     for(int i = num1;i<=num2;i++ ){
 		if (isPrime(i))
 		{
-			if(i != num1) printf(" ");
+			if(i == num1){
+				printf(" ");
+			} 
+			else{
+				printf(" ");
+			}
 			printf("%d", i);
 		}
 		
@@ -40,8 +55,13 @@ int main() {
 	printf("The Strong numbers are:");
 	for(int i = num1;i<=num2;i++ ){
 		if (isStrong(i))
-		{
-			if(i != num1) printf(" ");
+		{	
+			if(i == num1){
+				printf(" ");
+			} 
+			else{
+				printf(" ");
+			}
 			printf("%d", i);
 		}
 
