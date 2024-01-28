@@ -1,6 +1,9 @@
 CC = gcc
+AR = ar
 FLAGS = -Wall -g
 OBJECTS_MAIN = main.o
+OBJECTS_LIB_REC = advancedClassificationRecursion.o basicClassification.o 
+OBJECTS_LIB_LOOP = advancedClassificationLoop.o basicClassification.o 
 
 all: loops recursives recursived loopd mains maindloop maindrec
 
@@ -17,27 +20,27 @@ main.o: main.c NumClass.h
 	$(CC) $(FLAGS) -c main.c -o main.o
 
 advancedClassificationLoop.o: advancedClassificationLoop.c NumClass.h
-	$(CC) $(FLAGS) -c advancedClassificationLoop.c -o advancedClassificationLoop.o
+	$(CC) $(FLAGS) -c -fPIC advancedClassificationLoop.c -o advancedClassificationLoop.o
 
 advancedClassificationRecursion.o: advancedClassificationRecursion.c NumClass.h
-	$(CC) $(FLAGS) -c advancedClassificationRecursion.c -o advancedClassificationRecursion.o
+	$(CC) $(FLAGS) -c -fPIC advancedClassificationRecursion.c -o advancedClassificationRecursion.o
 
 basicClassification.o: basicClassification.c NumClass.h
-	$(CC) $(FLAGS) -c basicClassification.c -o basicClassification.o
+	$(CC) $(FLAGS) -c -fPIC basicClassification.c -o basicClassification.o
 
 
-libclassloops.a : advancedClassificationLoop.o basicClassification.o
-	ar -rcs libclassloops.a advancedClassificationLoop.o basicClassification.o
+libclassloops.a : $(OBJECTS_LIB_LOOP)
+	$(AR) -rcs libclassloops.a $(OBJECTS_LIB_LOOP)
 	
 
-libclassrec.a: advancedClassificationRecursion.o basicClassification.o
-	ar -rcs libclassrec.a advancedClassificationRecursion.o basicClassification.o
+libclassrec.a: $(OBJECTS_LIB_REC)
+	$(AR) -rcs libclassrec.a $(OBJECTS_LIB_REC)
 
-libclassrec.so: advancedClassificationRecursion.o basicClassification.o
-	$(CC) -fPIC -shared -o libclassrec.so advancedClassificationRecursion.o basicClassification.o 
+libclassrec.so: $(OBJECTS_LIB_REC)
+	$(CC) -shared -o libclassrec.so $(OBJECTS_LIB_REC)
 
-libclassloops.so: advancedClassificationLoop.o basicClassification.o
-	$(CC) -fPIC -shared -o libclassloops.so advancedClassificationLoop.o basicClassification.o
+libclassloops.so: $(OBJECTS_LIB_LOOP)
+	$(CC) -shared -o libclassloops.so $(OBJECTS_LIB_LOOP)
 
 recursives: libclassrec.a
 
